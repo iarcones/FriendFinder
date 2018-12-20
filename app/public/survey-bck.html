@@ -174,29 +174,35 @@
 
             <hr>
 
-            <!-- Modal Yelp Section -->
-        <div class="modal fade" id="modalMatch" tabindex="-1" role="dialog" aria-labelledby="modalMatch" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+
+            MODAL TO SHOW THE RESULTS
+
+            <div class="modal" id="#results" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header card_header_color">
-                            <h5 class="modal-title" id="modalMatch"> The Best MATCh is</h5>
+                        <div class="modal-header">
+                            <h5 class="modal-title">Your best MATCH is:</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body" id = "modal-body">
-                            Here the image and name
+                        <div class="modal-body">
+                            <div class="card" style="width: 18rem;">
+                                    <!-- <img class="card-img-top" id="#imgmatch" src=".../100px180/?text=Image cap" alt="match image"> -->
+                                <img class="card-img-top" id="#imgmatch"  alt="match image">
+                                <div class="card-body">
+                                    <p class="card-text" id="#namematch"></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            
+        </form>
+    </div>
 
 
     <script type="text/javascript">
@@ -238,15 +244,11 @@
                     console.log("data", data);
 
                     if (data) {
-                    
-                        var imageMatch = "<img src=" + data[1] + " alt=" + data[0] + ">"
-                        console.log(imageMatch)
-                        var nameMatch = '<h2 class="name">' + data[0] + '</h2>'
-
-                        $("#modal-body").empty();
-                        $("#modal-body").append(imageMatch, nameMatch);
-                        $("#modalMatch").modal();
-                    
+                        $("#imgmatch").add("src=" + data[1]);
+                        $("#imgname").text(data[0]);
+                        $('#results').modal();
+                        // alert(data[1]);
+                        console.log("where is the modal ?", data);
                     }
 
                     // Clear the form when submitting
