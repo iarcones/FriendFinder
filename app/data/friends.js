@@ -9,10 +9,10 @@ var friendArray = [
       1,
       3,
       1,
-      5,
+      2,
       4,
       4,
-      2
+      1
     ]
   },
   {
@@ -33,7 +33,7 @@ var friendArray = [
   },
   {
     "name": "Daenerys Targaryen",
-    "photo": "https://www.google.com/search?q=game+of+thrones&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiU0dfpnKvfAhWZFzQIHX4fA4MQ_AUIDygC&biw=1280&bih=667#imgrc=minTVWPjHxY0iM:",
+    "photo": "https://fsmedia.imgix.net/c1/74/eb/ec/7ef9/4cfe/a39c/92ab48cf8dcc/ep50-ss01-1920jpg.jpeg?rect=0%2C0%2C1920%2C960&dpr=2&auto=format%2Ccompress&w=650",
     "scores": [
       1,
       1,
@@ -42,7 +42,7 @@ var friendArray = [
       4,
       1,
       3,
-      5,
+      3,
       2,
       1
     ]
@@ -60,7 +60,7 @@ var friendArray = [
       2,
       2,
       4,
-      5
+      1
     ]
   },
   {

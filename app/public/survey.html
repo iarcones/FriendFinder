@@ -38,9 +38,9 @@
             </div>
             <hr>
 
-            <!-- test radio button with name for grouping all the button with the question--> 
+            <!-- test radio button with name for grouping all the button with the question-->
             <!--  <h3><strong>Question 1</strong></h3> -->
-            <!-- <h4>Your mind is always buzzing with unexplored ideas and plans.</h4> --> 
+            <!-- <h4>Your mind is always buzzing with unexplored ideas and plans.</h4> -->
             <!-- <div class="form-check-inline">
                 <input type="radio" class="form-check-input ml-4" name="Q1" value="1">1
                 <input type="radio" class="form-check-input ml-4" name="Q1" value="2">2
@@ -175,89 +175,78 @@
             <hr>
 
             <!-- Modal Yelp Section -->
-        <div class="modal fade" id="modalMatch" tabindex="-1" role="dialog" aria-labelledby="modalMatch" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
+            <div class="modal fade" id="modalMatch" tabindex="-1" role="dialog" aria-labelledby="modalMatch"
+                aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header card_header_color">
-                            <h5 class="modal-title" id="modalMatch"> The Best MATCh is</h5>
+                            <h5 class="modal-title" id="modalMatch"> BEST MATCH</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body" id = "modal-body">
+                        <div class="modal-body" id="modal-body">
                             Here the image and name
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-    
                         </div>
                     </div>
                 </div>
             </div>
 
 
-            
-
-
     <script type="text/javascript">
-        // In this code below we create the Front-end JavaScript which "POSTS" our form data to our express server.
-        // In essence, when the user hits submit, jQuery grabs all of the fields then sends a post request to our api
-        // Our api recognizes the route (/api/tables)... and then runs the associated code (found in api-routes.js).
-        // In this case the associated code "saves" the data to the table-data.js file or waitinglist-data.js file
 
         $("#submitsurvey").on("click", function (event) {
             event.preventDefault();
-            //// VALIDATE all scores and at least the photo start with http and name is filled
-            console.log("submitsurvey")
+            //// PENDING VALIDATE all scores photo start and name are filled
+
             var scoreArray = [];
             for (var i = 1; i < 11; i++) {
-                console.log("in the for: " + i);
+                
                 var indexQ = "#q" + i;
-                console.log(indexQ);
                 var questionValue = $("#q" + i).val();
-                // var question = $("#q" + i).val().trim()
-                console.log("question: ", questionValue)
-
                 scoreArray.push(questionValue);
 
             }
-            console.log(questionValue);
             var newSurvey = {
                 name: $("#name").val().trim(),
                 photo: $("#photoURL").val().trim(),
                 scores: scoreArray
             }
-
-            console.log(newSurvey);
-
-
             $.post("/api/friends", newSurvey,
                 function (data) {
 
                     // Here display the MODAL
-                    console.log("data", data);
-
                     if (data) {
-                    
-                        var imageMatch = "<img src=" + data[1] + " alt=" + data[0] + ">"
-                        console.log(imageMatch)
-                        var nameMatch = '<h2 class="name">' + data[0] + '</h2>'
+                        var imageMatch = "<img src=" + data[1] + " width='250'>";
+                        var nameMatch = '<h2 class="name text-center">' + data[0] + '</h2>';
 
                         $("#modal-body").empty();
                         $("#modal-body").append(imageMatch, nameMatch);
                         $("#modalMatch").modal();
-                    
+
+                        clearInput();
+
                     }
 
-                    // Clear the form when submitting
-                    //   $("#reserve-name").val("");
-                    //   $("#reserve-phone").val("");
-                    //   $("#reserve-email").val("");
-                    //   $("#reserve-unique-id").val("");
-
                 });
-
         });
+
+        function clearInput() {
+
+            $("#name").val(""),
+                $("#photoURL").val(""),
+                $("#q1").val(""),
+                $("#q2").val(""),
+                $("#q3").val(""),
+                $("#q4").val(""),
+                $("#q5").val(""),
+                $("#q6").val(""),
+                $("#q7").val(""),
+                $("#q8").val(""),
+                $("#q9").val(""),
+                $("#q10").val("")
+
+        }
 
     </script>
 
