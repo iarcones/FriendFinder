@@ -38,7 +38,6 @@ module.exports = function (app) {
 
       if (bestMatch.length === 0) {
         bestMatch = [friendArray[i].name, friendArray[i].photo, dif];
-        console.log(bestMatch);
       }
       else if (dif < bestMatch[2]) {
       

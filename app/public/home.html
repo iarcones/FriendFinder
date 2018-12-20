@@ -9,27 +9,41 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Prompt" rel="stylesheet">
+
+<style>
+    body{
+        font-family: 'Prompt', sans-serif;
+    }
+    .fontT{
+        font-family: 'Montserrat', sans-serif;
+    }
+   a{
+       color: green;
+   }
+</style>
+
 </head>
 
 <body>
 
     <div class="container">
 
-        <div class="jumbotron">
+        <div class="jumbotron bg-dark text-white fontT">
             <h1><span class="fa fa-handshake-o"></span>  Friend Finder</h1>
-            <hr>
+            <hr class="bg-white">
             <h2>Matching by compatibility. Answer a few basic questions.<br>
             Then find the friend with the greatest compatibility!</h2>
             <br>
 
             <div>
-                <a href="/survey"><button class="btn btn-lg btn-primary"><span class="fa fa-list-alt"></span> Go to survey</button></a>
+                <a href="/survey"><button class="btn btn-lg btn-white"><span class="fa fa-list-alt"></span> Go to survey</button></a>
             </div>
         </div>
 
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends Link</a> | <a href="https://github.com/iarcones/FriendFinder">GitHub Repo</a> 
+                <p><a href="/api/friends">API Friends Link</a> | <a href="https://github.com/iarcones/FriendFinder" target="_blank">GitHub Repo</a> 
                    
             </div>
         </footer>
