@@ -21,7 +21,7 @@ Try to find your best match here: https://friendfinder-ia.herokuapp.com/
 - Express
 
 ## Screenshots
-![](name-of-giphy.gif)
+![](demo.gif)
 
 ## Comments
 
