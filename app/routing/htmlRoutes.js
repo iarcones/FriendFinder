@@ -18,6 +18,10 @@ module.exports = function(app) {
   app.get("/survey", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/survey.html"));
   });
+  // test using fetch, some students are using fetch instead ajax
+  app.get("/surveyfetch", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/survey-using-FETCH.html"));
+  });
 
   // If no matching route is found default to home
   app.get("*", function(req, res) {

@@ -6,11 +6,6 @@
 
 var friendArray = require("../data/friends");
 
-
-// ===============================================================================
-// ROUTING
-// ===============================================================================
-
 module.exports = function (app) {
 
   // A GET route with the url /api/friends. This will be used to display a JSON of all possible friends.
@@ -27,35 +22,28 @@ module.exports = function (app) {
     // A POST routes /api/friends. This will be used to handle incoming survey results. This route will also be used to handle the compatibility logic. 
 
     var scoreUser = req.body.scores;
-  
-    var bestMatch = [];
+
+    var bestMatch = [ "", "", 51 ];
+
     for (var i = 0; i < friendArray.length; i++) {
-      
-      var dif = 0;
-      for (var j = 0; j < friendArray[i].scores.length; j++) {
-        dif += Math.abs(scoreUser[j] - friendArray[i].scores[j]);
+
+      var diff = 0;
+      for (var j = 0; j < friendArray[ i ].scores.length; j++) {
+        diff += Math.abs(scoreUser[ j ] - friendArray[ i ].scores[ j ]);
       }
 
-      if (bestMatch.length === 0) {
-        bestMatch = [friendArray[i].name, friendArray[i].photo, dif];
+      if (diff < bestMatch[ 2 ]) {
+        bestMatch = [ friendArray[ i ].name, friendArray[ i ].photo, diff ];
       }
-      else if (dif < bestMatch[2]) {
-      
-        bestMatch = [friendArray[i].name, friendArray[i].photo, dif];
-        
-      }
+      console.log(friendArray[i].name, diff)
     }
 
     friendArray.push(req.body);
+    console.log(friendArray)
 
-    //here return the data for the modal
     res.json(bestMatch);
-  });
+  });;
 
-
-//------------------------------------------
-// I added this below code so you could clear out the table while working with the functionality.
-// Don"t worry about it!
 
   app.post("/api/clear", function (req, res) {
     // Empty out the arrays of data

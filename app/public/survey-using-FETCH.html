@@ -235,14 +235,13 @@
                 <div class="modal-dialog modal-sm" role="document">
                     <div class="modal-content">
                         <div class="modal-header card_header_color">
-                            <h3 class="text-center" id="modalMatch">The BEST MATCH is: <span id="friendName"></span>
-                            </h3>
+                            <h3 class="text-center" id="modalMatch">The BEST MATCH is:</h3>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body" id="modal-body">
-                            <img id="friendPhoto" src="" class='ml-2' width='250'>
+                            Here the image and name
                         </div>
                     </div>
                 </div>
@@ -253,65 +252,82 @@
 
                 $("#submitsurvey").on("click", function (event) {
                     event.preventDefault();
-
-                    // loop getting every question value
-                    // var scoreArray = [];
-                    // for (var i = 1; i < 11; i++) {
-
-
-                    //     var questionValue = $("#q" + i).val();
-                    //     scoreArray.push(questionValue);
-
-                    // }
-
-                    // get all the elements with the class 
-                    var scoreArray = []
-                    $(".chosen-select").each(function (i, elem) {
-                        scoreArray.push($(this).val())
-                    })
+                    //// PENDING VALIDATE all scores photo start and name are filled
 
                     if ($("#name").val() === "" ||
                         $("#photoURL").val() === "" ||
-                        scoreArray.length !== 10
-
-                    ) {
+                        $("#q1").val() === "" ||
+                        $("#q2").val() === "" ||
+                        $("#q3").val() === "" ||
+                        $("#q4").val() === "" ||
+                        $("#q5").val() === "" ||
+                        $("#q6").val() === "" ||
+                        $("#q7").val() === "" ||
+                        $("#q8").val() === "" ||
+                        $("#q9").val() === "" ||
+                        $("#q10").val() === "") {
 
                         alert("Please fill out all fields before submitting!");
                         return;
                     }
 
+                    var scoreArray = [];
+                    for (var i = 1; i < 11; i++) {
 
+
+                        var questionValue = $("#q" + i).val();
+                        scoreArray.push(questionValue);
+
+                    }
                     var newSurvey = {
                         name: $("#name").val().trim(),
                         photo: $("#photoURL").val().trim(),
                         scores: scoreArray
                     }
+                    // $.post("/api/friends", newSurvey,
+                    fetch("/api/friends", {
+                        method: "POST",
+                        headers: {
+                            'Content-Type': 'application/json'
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: newSurvey
 
-                    $.post("/api/friends", newSurvey,
+                    }).then(
                         function (data) {
 
-                            // Here display the MOmodalMatch
+                            // Here display the MODAL
                             if (data) {
 
-                                $("#friendName").text(data[ 0 ])
-                                $("#friendPhoto").attr("src", data[1])
+                                var imageMatch = "<img src=" + data[ 1 ] + " class='ml-2' width='250'>";
+                                var nameMatch = '<h2 class="name text-center">' + data[ 0 ] + '</h2>';
 
+                                $("#modal-body").empty();
+                                $("#modal-body").append(imageMatch, nameMatch);
                                 $("#modalMatch").modal();
 
                                 clearInput();
 
                             }
 
+
                         });
-                });
+                })
 
                 function clearInput() {
 
-                    $("#name").val("")
-                    $("#photoURL").val("")
-                    $(".chosen-select").each(function (i, elem) {
-                        $(this).val("")
-                    })
+                    $("#name").val(""),
+                        $("#photoURL").val(""),
+                        $("#q1").val(""),
+                        $("#q2").val(""),
+                        $("#q3").val(""),
+                        $("#q4").val(""),
+                        $("#q5").val(""),
+                        $("#q6").val(""),
+                        $("#q7").val(""),
+                        $("#q8").val(""),
+                        $("#q9").val(""),
+                        $("#q10").val("")
 
                 }
 
